@@ -1,0 +1,809 @@
+﻿
+    :root {
+      --bg-black: #030303;
+      --card-bg: #121212;
+      --card-border: #252525;
+      --orange: #ff7300;
+      --orange-hover: #e56300;
+      --gold: #ffd400;
+      --gold-dim: rgba(255, 212, 0, 0.1);
+      --gold-border: rgba(255, 212, 0, 0.35);
+      --text-white: #ffffff;
+      --text-muted: #d8d8d8;
+      --whatsapp-green: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #0b0b0b;
+      color: var(--text-white);
+      font-family: 'Noto Sans Sinhala', 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .leaflet-wrapper {
+      width: 100%;
+      background-color: var(--bg-black);
+      overflow: hidden;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 24px;
+      background-color: #111111;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .site-logo {
+      position: relative;
+      display: block;
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      overflow: hidden;
+    }
+
+    .site-logo img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 350%;
+      max-width: none;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: contain;
+    }
+
+    .site-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .site-search-wrap {
+      position: relative;
+    }
+
+    .site-search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: min(320px, 36vw);
+      min-width: 120px;
+    }
+
+    .site-search input {
+      flex: 1;
+      min-width: 0;
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid #555555;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #111111;
+      font: inherit;
+    }
+
+    .site-search button {
+      display: inline-flex;
+      flex: 0 0 40px;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      border: 0;
+      border-radius: 8px;
+      background-color: var(--orange);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .site-login {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background-color: var(--orange);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-login:hover,
+    .site-search button:hover {
+      background-color: var(--orange-hover);
+    }
+
+    .search-status {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 5;
+      max-width: min(320px, 75vw);
+      padding: 8px 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      background-color: #111111;
+      color: var(--text-white);
+      font-size: 0.85rem;
+    }
+
+    .search-status[hidden] {
+      display: none;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .search-result-highlight {
+      outline: 2px solid var(--orange);
+      outline-offset: -2px;
+    }
+
+    /* ================= 1. HERO SECTION ================= */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 48px 24px 24px;
+      background-color: #1c1c1c;
+    }
+
+    .hero-slideshow,
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-slideshow {
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      z-index: 1;
+      content: '';
+      background: linear-gradient(
+        to bottom,
+        rgba(20, 20, 20, 0.58) 0%,
+        rgba(12, 12, 12, 0.62) 65%,
+        rgba(3, 3, 3, 0.88) 100%
+      );
+    }
+
+    .hero > :not(.hero-slideshow) {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.1rem;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-top: 228px;
+      text-align: center;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-title .accent {
+      color: var(--orange);
+      margin-right: 10px;
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: #f5f5f5;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .cta-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-group .btn {
+      padding: 12px 14px;
+    }
+
+    .hero-highlights {
+      width: 100%;
+      margin: 42px auto 0;
+      text-align: center;
+    }
+
+    .hero-highlights-title {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-highlights-title .gold {
+      color: var(--gold);
+    }
+
+    .hero-highlights-badge {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-stats .stat-card {
+      padding: 22px 14px;
+      background-color: rgba(18, 18, 18, 0.72);
+      border-color: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-stats .stat-number {
+      font-size: 2.2rem;
+    }
+
+    .hero-stats .stat-label {
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--orange);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(255, 115, 0, 0.35);
+    }
+
+    .btn-secondary {
+      background-color: rgba(105, 105, 105, 0.55);
+      backdrop-filter: blur(6px);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ================= SHARED SECTION STYLES ================= */
+    .section {
+      padding: 44px 18px;
+      text-align: center;
+      background-color: var(--bg-black);
+    }
+
+    .section-heading {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+
+    .section-heading .gold {
+      color: var(--gold);
+    }
+
+    .pill-badge {
+      display: inline-block;
+      padding: 8px 22px;
+      border-radius: 999px;
+      background-color: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 22px;
+    }
+
+    /* ================= 2. STATS SECTION ================= */
+    .stats-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .stat-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 34px 20px;
+    }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.9rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 700px) {
+      .hero-title {
+        font-size: clamp(2rem, 10.5vw, 3.1rem);
+      }
+
+      .student-login-label {
+        display: block;
+      }
+
+      .site-header {
+        padding: 10px 12px;
+      }
+
+      .site-logo {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+      }
+
+      .site-header-actions {
+        gap: 8px;
+      }
+
+      .site-search {
+        width: min(240px, 36vw);
+      }
+
+      .site-search button {
+        flex-basis: 36px;
+        height: 38px;
+      }
+
+      .site-search input {
+        height: 38px;
+        padding: 0 8px;
+      }
+
+      .site-login {
+        min-height: 38px;
+        padding: 0 12px;
+      }
+
+      .hero-highlights {
+        margin-top: 32px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .hero-stats .stat-card {
+        padding: 18px 10px;
+      }
+
+      .hero-stats .stat-number {
+        font-size: 1.9rem;
+      }
+    }
+
+    /* ================= 3. TOP RESULTS ORBIT ================= */
+    .orbit-wrapper {
+      --size: 330px;
+      --radius: 122px;
+      position: relative;
+      width: var(--size);
+      height: var(--size);
+      margin: 12px auto 0;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(var(--radius) * 2);
+      height: calc(var(--radius) * 2);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 212, 0, 0.22);
+    }
+
+    .orbit-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 106px;
+      height: 106px;
+      border-radius: 50%;
+      background-color: #0e0e0e;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 24px rgba(255, 212, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .orbit-center .top-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+
+    .orbit-center .top-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .student-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background-color: #151515;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 18px rgba(255, 212, 0, 0.35);
+      transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius))
+        rotate(calc(-1 * var(--angle)));
+    }
+
+    .student-node img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .student-rank-badge {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      z-index: 1;
+      transform: translateX(-50%);
+      padding: 2px 4px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background-color: rgba(3, 3, 3, 0.9);
+      color: var(--gold);
+      font-size: 0.48rem;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* ================= 4. TIMETABLE SECTION ================= */
+    .timetable-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      text-align: left;
+    }
+
+    .institute-card {
+      background-color: var(--card-bg);
+      border: 1px solid #2b271a;
+      border-radius: 16px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .institute-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #262626;
+    }
+
+    .institute-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      object-fit: contain;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+
+    .institute-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .institute-city {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #d6b647;
+      margin-top: 2px;
+    }
+
+    .class-slot {
+      margin-bottom: 12px;
+    }
+
+    .class-slot:last-child {
+      margin-bottom: 0;
+    }
+
+    .class-slot.divider-top {
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 212, 0, 0.18);
+    }
+
+    .slot-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .slot-time {
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: #dcdcdc;
+    }
+
+    /* ================= 5. REGISTRATION CARD ================= */
+    .register-card {
+      background: radial-gradient(circle at top center, #1b1810 0%, #0e0e0e 75%);
+      border: 1px solid rgba(255, 212, 0, 0.25);
+      border-radius: 22px;
+      padding: 36px 22px;
+      text-align: center;
+    }
+
+    .register-title {
+      font-size: 1.42rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .register-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #d4d4d4;
+      margin-bottom: 28px;
+    }
+
+    .btn-gold-glow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 999px;
+      background-color: #f3c600;
+      color: #000000;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.35;
+      box-shadow: 0 0 26px rgba(255, 212, 0, 0.35);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-gold-glow:active {
+      transform: scale(0.98);
+    }
+
+    /* ================= 6. TEACHER PROFILE ================= */
+    .teacher-frame {
+      width: 285px;
+      max-width: 85%;
+      aspect-ratio: 4 / 5;
+      margin: 0 auto 28px;
+      padding: 4px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5df7b 45%, #ffd400 100%);
+      box-shadow: 0 0 28px rgba(255, 212, 0, 0.22);
+    }
+
+    .teacher-frame-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      background-color: #0d0d0d;
+      overflow: hidden;
+    }
+
+    .teacher-frame-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .teacher-name {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .teacher-bio {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #cfcfcf;
+      padding: 0 8px;
+    }
+
+    /* ================= 7. WHITE CONTACT FOOTER ================= */
+    .contact-footer {
+      background-color: #ffffff;
+      padding: 36px 20px 44px;
+      color: #1f2937;
+    }
+
+    .contact-card {
+      background-color: #ffffff;
+      border-radius: 20px;
+      border-top: 5px solid var(--whatsapp-green);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.09);
+      padding: 32px 22px;
+      text-align: center;
+    }
+
+    .contact-heading {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #1e293b;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .contact-desc {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #334155;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .btn-whatsapp-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 15px 22px;
+      border-radius: 999px;
+      background-color: var(--whatsapp-green);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    @media (max-width: 360px) {
+      .hero {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .cta-group {
+        gap: 8px;
+      }
+
+      .cta-group .btn {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+      }
+
+      .orbit-wrapper {
+        --size: 290px;
+        --radius: 104px;
+        width: min(var(--size), 100%);
+        height: auto;
+        aspect-ratio: 1;
+      }
+      .student-node {
+        width: 58px;
+        height: 58px;
+      }
+      .orbit-center {
+        width: 94px;
+        height: 94px;
+      }
+      .timetable-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  

@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Einsphysics from Saranga Palihawadana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Noto+Sans+Sinhala:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="leaflet-wrapper">
+    <header class="site-header">
+      <a class="site-logo" href="#home" aria-label="Einsphysics home">
+        <img src="Assets/logo.png" alt="Einsphysics" />
+      </a>
+
+      <div class="site-header-actions">
+        <div class="site-search-wrap">
+          <form class="site-search" id="site-search" role="search">
+            <label class="visually-hidden" for="site-search-input">Search this page</label>
+            <input id="site-search-input" type="search" placeholder="Search..." />
+            <button type="submit" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2" />
+                <path d="m16 16 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </form>
+          <span class="search-status" id="search-status" role="status" aria-live="polite" hidden></span>
+        </div>
+
+        <a
+          class="site-login"
+          href="https://example.com/student-login"
+          target="_blank"
+          rel="noopener"
+        >
+          Login
+        </a>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-slideshow" aria-hidden="true">
+        <img class="hero-slide is-active" src="Assets/picture1.jpeg" alt="" />
+        <img class="hero-slide" src="Assets/picture2.jpeg" alt="" />
+        <img class="hero-slide" src="Assets/picture3.jpeg" alt="" />
+      </div>
+
+      <h1 class="hero-title"><span class="accent">EINS</span>Physics</h1>
+
+      <p class="hero-desc">
+        අ.පො.ස. (උසස් පෙළ) විභාගයේ දිවයිනේ ප්‍රථමයා ඇතුලු දිස්ත්‍රික් මුල් ස්ථාන රැසක්ම බිහි කරමින්
+        ප්‍රමුඛතම ප්‍රතිඵල ගොඩනැගූ පන්තිය.
+      </p>
+
+      <div class="cta-group">
+        <a href="https://einsphysics.com" class="btn btn-primary" target="_blank" rel="noopener">
+          <span class="student-login-label">Student</span>
+          <span class="student-login-label">Login</span>
+        </a>
+        <a
+          href="https://wa.me/94767289898"
+          class="btn btn-secondary"
+          target="_blank"
+          rel="noopener"
+        >
+          Contact On Whatsapp
+        </a>
+      </div>
+
+      <div class="hero-highlights">
+        <h2 class="hero-highlights-title">
+          ලංකාවේ වැඩියෙන්ම වැඩ කරන එකම <span class="gold">Physics</span> පන්තිය
+        </h2>
+        <div class="hero-highlights-badge">දශක 2ක් තුළ ගොඩනැගූ ප්‍රතිඵල ඉතිහාසය</div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">1100+</div>
+            <div class="stat-label">සමස්ත A සාමාර්ථ</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">දිවයිනේ ප්‍රමුඛ ස්ථාන</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">දිස්ත්‍රික් ප්‍රථමයින්</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">86+</div>
+            <div class="stat-label">දිස්ත්‍රික් මුල් 10 අතර</div>
+          </div>
+      </div>
+    </section>
+
+    <!-- 3. TOP RESULTS CIRCULAR SHOWCASE -->
+    <section class="section">
+      <div class="pill-badge">අප පන්තියෙන් බිහි වූ විශිෂ්ඨයින්</div>
+
+      <h2 class="section-heading" style="font-size: 1.85rem;">
+        ඉහළම ප්‍රතිඵල ලැබූ<br />
+        සිසුන් කිහිපදෙනෙක්
+      </h2>
+
+      <div class="orbit-wrapper">
+        <div class="orbit-ring"></div>
+        <div class="orbit-center">
+          <div class="top-num">TOP</div>
+          <div class="top-sub">RESULTS</div>
+        </div>
+
+        <div class="student-node" style="--angle: -67.5deg;">
+          <img src="Assets/Student1.jpg" alt="Student 1" />
+          <span class="student-rank-badge" title="District Rank 01">District 01</span>
+        </div>
+        <div class="student-node" style="--angle: -22.5deg;">
+          <img src="Assets/Student2.jpg" alt="Student 2" />
+          <span class="student-rank-badge" title="District Rank 02">District 02</span>
+        </div>
+        <div class="student-node" style="--angle: 22.5deg;">
+          <img src="Assets/Student3.jpg" alt="Student 3" />
+          <span class="student-rank-badge" title="Island Rank 01">Island 01</span>
+        </div>
+        <div class="student-node" style="--angle: 67.5deg;">
+          <img src="Assets/Student4.jpg" alt="Student 4" />
+        </div>
+        <div class="student-node" style="--angle: 112.5deg;">
+          <img src="Assets/Student5.jpg" alt="Student 5" />
+        </div>
+        <div class="student-node" style="--angle: 157.5deg;">
+          <img src="Assets/Student6.jpg" alt="Student 6" />
+        </div>
+        <div class="student-node" style="--angle: 202.5deg;">
+          <img src="Assets/Student7.jpg" alt="Student 7" />
+        </div>
+        <div class="student-node" style="--angle: 247.5deg;">
+          <img src="Assets/Student8.jpg" alt="Student 8" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TIMETABLE & INSTITUTES SECTION -->
+    <section class="section">
+      <div class="pill-badge">පන්ති කාලසටහන</div>
+
+      <h2 class="section-heading" style="font-size: 1.85rem;">
+        අධ්‍යාපන ආයතන සහ<br />
+        වේලාවන්
+      </h2>
+
+      <div class="timetable-grid">
+        <!-- Physical institute 1 -->
+        <div class="institute-card">
+          <div class="institute-header">
+            <img src="Assets/siyathra.jpg" alt="Siyathra" class="institute-logo" />
+            <div>
+              <div class="institute-name">Siyathra</div>
+              <div class="institute-city">Physical Institute</div>
+            </div>
+          </div>
+
+          <div class="class-slot">
+            <div class="slot-title">2027 Theory</div>
+            <div class="slot-time">සෙනසුරාදා: පෙ.ව. 8.00 - ප.ව. 12.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2027 Advanced Theory</div>
+            <div class="slot-time">සඳුදා: පෙ.ව. 8.00 - ප.ව. 2.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2027 Paper Discussion</div>
+            <div class="slot-time">සිකුරාදා: 9.30</div>
+          </div>
+          <div class="class-slot divider-top">
+            <div class="slot-title">2028 Theory</div>
+            <div class="slot-time">සෙනසුරාදා: ප.ව. 1.00 - 5.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2028 Paper Class</div>
+            <div class="slot-time">සඳුදා: ප.ව. 2.30 - 5.30</div>
+          </div>
+        </div>
+
+        <!-- Physical institute 2 -->
+        <div class="institute-card">
+          <div class="institute-header">
+            <img src="Assets/sipdiya.jpg" alt="Sipdiya Institute" class="institute-logo" />
+            <div>
+              <div class="institute-name">Sipdiya Institute</div>
+              <div class="institute-city">රත්නපුර (Ratnapura)</div>
+            </div>
+          </div>
+
+          <div class="class-slot">
+            <div class="slot-title">2027 Theory</div>
+            <div class="slot-time">
+              අඟහරුවාදා: පෙ.ව. 8.00 - ප.ව. 1.30<br />
+              බදාදා: පෙ.ව. 8.00 - ප.ව. 1.30
+            </div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2027 Paper</div>
+            <div class="slot-time">අඟහරුවාදා: ප.ව. 2.30 - 6.00</div>
+          </div>
+          <div class="class-slot divider-top">
+            <div class="slot-title">2028 Theory</div>
+            <div class="slot-time">බදාදා: ප.ව. 2.30 - 6.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2028 Paper</div>
+            <div class="slot-time">අඟහරුවාදා: ප.ව. 2.30 - 6.00</div>
+          </div>
+        </div>
+
+        <!-- Physical institute 3 -->
+        <div class="institute-card">
+          <div class="institute-header">
+            <img src="Assets/nawodaya.jpg" alt="Nawodaya A/L" class="institute-logo" />
+            <div>
+              <div class="institute-name">Nawodaya A/L</div>
+              <div class="institute-city">Physical Institute</div>
+            </div>
+          </div>
+
+          <div class="class-slot">
+            <div class="slot-title">2027 Advanced Theory</div>
+            <div class="slot-time">සඳුදා: ප.ව. 3.30 - 7.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2027 Theory</div>
+            <div class="slot-time">බ්‍රහස්පතින්දා: පෙ.ව. 8.30 - ප.ව. 2.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2027 Paper</div>
+            <div class="slot-time">බ්‍රහස්පතින්දා: ප.ව. 2.30 - 5.00</div>
+          </div>
+          <div class="class-slot divider-top">
+            <div class="slot-title">2028 Theory</div>
+            <div class="slot-time">බ්‍රහස්පතින්දා: ප.ව. 3.30 - 7.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">2028 Paper</div>
+            <div class="slot-time">සඳුදා: ප.ව. 3.30 - 6.30</div>
+          </div>
+        </div>
+
+        <!-- Online institute -->
+        <div class="institute-card">
+          <div class="institute-header">
+            <img src="Assets/zoom.jpg" alt="Zoom" class="institute-logo" />
+            <div>
+              <div class="institute-name">Online</div>
+              <div class="institute-city">Zoom</div>
+            </div>
+          </div>
+
+          <div class="class-slot">
+            <div class="slot-title">2027 Theory</div>
+            <div class="slot-time">
+              ඉරිදා: ප.ව. 3.30 - 5.30<br />
+              සඳුදා: පෙ.ව. 8.00 - 10.30
+            </div>
+          </div>
+          <div class="class-slot divider-top">
+            <div class="slot-title">Siyathra 2027 Theory</div>
+            <div class="slot-time">සෙනසුරාදා: පෙ.ව. 8.00 - ප.ව. 12.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">Siyathra 2027 Advanced Theory</div>
+            <div class="slot-time">සඳුදා: පෙ.ව. 8.00 - ප.ව. 2.00</div>
+          </div>
+          <div class="class-slot">
+            <div class="slot-title">Siyathra 2028 Theory</div>
+            <div class="slot-time">සෙනසුරාදා: ප.ව. 1.00 - 5.00</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CLASS REGISTRATION CARD -->
+    <section class="section" id="register">
+      <div class="register-card">
+        <div class="pill-badge">පන්ති සඳහා ලියාපදිංචිය</div>
+
+        <h2 class="register-title">
+          2027 / 2028 A/L Physics පන්ති සඳහා දැන්ම ලියාපදිංචි වන්න
+        </h2>
+
+        <p class="register-desc">
+          ඔබේ ආසනය වෙන් කර ගැනීමට සහ පන්තිවලට අදාළ නිබන්ධන (Tutes) නිවසටම ගෙන්වා
+          ගැනීමට පහත Button එක ක්ලික් කර ලියාපදිංචි පෝරමය (Form) සම්පූර්ණ කරන්න.
+        </p>
+
+        <a href="https://einsphysics.com" class="btn-gold-glow" target="_blank" rel="noopener">
+          <span>ලියාපදිංචි වීමට මෙතැනින්<br />පිවිසෙන්න</span>
+          <span style="font-size: 1.3rem;">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 6. TEACHER PROFILE SECTION -->
+    <section class="section" style="padding-bottom: 52px;">
+      <div class="teacher-frame">
+        <div class="teacher-frame-inner">
+          <img src="Assets/saranga_sir.jpg" alt="සාරංග පලිහවඩන" />
+        </div>
+      </div>
+
+      <div class="pill-badge">ඔබේ ගුරුවරයා</div>
+
+      <h2 class="teacher-name">සාරංග පලිහවඩන</h2>
+
+      <p class="teacher-bio">
+        උසස් පෙළින් පසුව විශ්ව විද්‍යාල අධ්‍යාපනය සාර්ථකව අවසන් කර කැලණිය විශ්ව
+        විද්‍යාලයේ භෞතික විද්‍යා අංශයේ සහකාර කථිකාචාර්යවරයෙකු ලෙස සේවය කර මනා
+        අත්දැකීම් ලද්දෙකි. එලෙස ලද අසමසම අත්දැකීම් සමග පූර්ණ සුදුසුකම් සහිත
+        ගුරුවරයෙක් ලෙස උපකාරක පන්ති ක්ෂේත්‍රයට සාරංග සර්ගේ පැමිණීම මහත් වූ අභිමානයකි.
+      </p>
+      <p class="teacher-bio">
+        සෑම වසරකදීම විශාල දූ දරුවන් පිරිසක් වෛද්‍ය සහ ඉංජිනේරු පීඨ වලට ඇතුළු වන
+        පරිදි දැනුම ලබා දී විශිෂ්ට ප්‍රතිඵල දරුවන්ට ලබාදෙන ගුරුවරයෙකු ලෙස තමන්ගේ
+        ස්ථාවරත්වය තහවුරු කර ඇත. 2013 වසරේ ජීව විද්‍යා අංශයෙන් ලංකාවේ ප්‍රථම
+        ස්ථානය තම පන්තියෙන් නිර්මාණය කළ මෙම පරමාදර්ශී ගුරු භූමිකාව මෙවර (2017)
+        රත්නපුරයේ ගණිත අංශයෙන් හොඳම ප්‍රතිඵලය එනම් දිස්ත්‍රික් ප්‍රථමයා මෙන්ම
+        දිවයිනේ 7 වන ස්ථානය තම පන්තියෙන් නිර්මාණය කළේ තමන්ගේ විශිෂ්ටත්වය තව තවත්
+        තහවුරු කරමිනි.
+      </p>
+      <p class="teacher-bio">
+        භෞතික විද්‍යාව වැනි සංකීර්ණ සිද්ධාන්ත ඇතුළත් විෂයකට මෙලෙස විශිෂ්ට ප්‍රතිඵල
+        ලබා දෙන ගුරුවරයෙකුගේ ඉගැන්වීම් රටාවට අභියෝග කළ හැක්කේ කා හටද? නිසිකලට
+        විෂය නිර්දේශය ආවරණය කිරීම, මුල සිටම ආදර්ශ විභාග පැවැත්වීම තුළින් භෞතික
+        විද්‍යා විෂයට ඔබව දක්ෂයෙකු නොව අතිදක්ෂයෙකු කිරීමේ එකම වැඩ සටහන ඔහු සතුවේ.
+      </p>
+    </section>
+
+    <!-- 7. WHITE CONTACT FOOTER SECTION -->
+    <footer class="contact-footer">
+      <div class="contact-card">
+        <h2 class="contact-heading">
+          ගුරුතුමා සම්බන්ධ<br />
+          කරගන්න
+        </h2>
+
+        <p class="contact-desc">
+          පන්ති පිළිබඳ වැඩිදුර විස්තර දැනගැනීමට පහත දුරකථන අංකයට අමතන්න හෝ WhatsApp
+          හරහා පණිවිඩයක් එවන්න.
+        </p>
+
+        <a href="tel:+94767289898" class="phone-link">
+          <span>📞</span>
+          <span>දුරකථන: 076 728 9898</span>
+        </a>
+
+        <a
+          href="https://wa.me/94767289898?text=Hello%2C%20I%20would%20like%20more%20details%20about%20the%20Physics%20Class."
+          class="btn-whatsapp-pill"
+          target="_blank"
+          rel="noopener"
+        >
+          <!-- WhatsApp SVG Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.906-.125-.453-.141-1.031-.328-1.766-.641-3.094-1.328-5.109-4.453-5.266-4.656-.156-.203-1.266-1.688-1.266-3.219 0-1.531.797-2.281 1.078-2.594.281-.313.625-.391.828-.391.203 0 .422.016.609.016.188 0 .453-.078.703.531.266.641.891 2.188.969 2.344.078.156.125.344.031.547-.094.203-.156.344-.313.531-.156.188-.328.406-.469.547-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.125.688-.094.188-.219.797-.922 1.016-1.234.219-.313.422-.266.719-.156.297.109 1.875.891 2.188 1.047.313.156.531.234.609.359.078.125.078.734-.172 1.438z"/>
+          </svg>
+          <span>WhatsApp හරහා<br />සම්බන්ධ වන්න</span>
+        </a>
+      </div>
+    </footer>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
